@@ -1,4 +1,5 @@
-
+var readline = require("readline-sync");
+var opcao= true;
 const membros = [
    
 ];
@@ -28,16 +29,49 @@ function exibirMembrosETarefas() {
     });
 }
 
-// Exemplo de uso do sistema
 
-adicionarMembro('Ana');
-adicionarMembro('Carlos');
-adicionarMembro('rebeca');
-atribuirTarefa('Ana', 'Desenvolver API');
-atribuirTarefa('Ana', 'Testar aplicação');
-atribuirTarefa('Ana', 'Fazer front-end')
-atribuirTarefa('Carlos', 'Documentar código');
 
-exibirMembrosETarefas();
+while(opcao){
+    console.log("=====Menu====")
+    console.log("1-Adicionar Membro")
+    console.log("2-Adicionar tarefa a um membro")
+    console.log("3-exibir membros e tarefas ")
+    console.log("0-Sair do sistema ")
+    console.log("=================")
+    
+var escolhaopcao = readline.questionInt("Escolha uma opcao:")
+ console.clear();
 
-console.table(membros)
+switch (escolhaopcao)
+    {
+          case 1:
+            var nome = readline.question("Digite o nome do novo membro da equipe:").toLowerCase();
+            adicionarMembro(nome);
+           
+            break;
+        case 2:
+            var tarefa = readline.question("Adicione a tarefa:");
+            var membroequipe = readline.question("Digite o membro da equipe responsavel pela tarefa:").toLowerCase();
+            atribuirTarefa(membroequipe, tarefa);
+           
+            break;
+        case 3:
+              exibirMembrosETarefas();
+             break;
+       
+        case 0:
+            console.log("Saindo do sistema");
+            opcao =false;
+            break;
+        default:
+            console.log("opção invalida");
+            
+    }
+
+   
+}
+
+
+
+
+
