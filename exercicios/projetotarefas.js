@@ -43,7 +43,6 @@ while(opcao){
     console.log("4-Excluir uma Tarefa")
     console.log("0-Sair do sistema ")
     console.log("=================")
-
  var escolhausuario = readline.questionInt("Escolha uma opcao:");
 
 switch(escolhausuario){
@@ -64,7 +63,6 @@ switch(escolhausuario){
         if(VerificarseIdExiste(id)==true){
             var descricaoTarefa = readline.question("Atualize a descricao da tarefa:")
             EditarTarefas(id,descricaoTarefa);
-           
         }
         else{
             console.log("Tarefa não encontrada")
@@ -80,7 +78,6 @@ switch(escolhausuario){
          if(VerificarseIdExiste(id)==true){
             ExcluirTarefas(id)
             console.log("Tarefa excluida com sucesso")
-            
         }
          else{
             console.log("Tarefa não encontrada")
@@ -91,8 +88,8 @@ switch(escolhausuario){
       console.log("Saindo do sistema");
       opcao = false;
     break;
-   
-   default:
+    
+    default:
      console.log("opção invalida");
 }
 }
