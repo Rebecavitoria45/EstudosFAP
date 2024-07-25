@@ -10,9 +10,12 @@ function adicionarLoja(nomeLoja) {
     console.log("Loja cadastrada com sucesso.")
 }
 
-function adicionarProduto(nomeLoja, nomeProduto, preco) {
+function adicionarProduto() {
+    var nomeLoja= readline.question("Digite o nome da loja o qual voce quer cadastrar o produto:")
     const loja = lojas.find(l => l.nome === nomeLoja);
     if (loja) {
+        var nomeProduto = readline.question("Digite o nome do produto:")
+        var preco = readline.question("Digite o preco do produto:")
        loja.produtos.push({
         nome: nomeProduto,
         preco: preco,
@@ -32,7 +35,8 @@ function exibirLojasEProdutos() {
     }); 
 }
 
-function excluirLoja(nomeLoja){
+function excluirLoja(){
+    var nomeLoja = readline.question("Digite o nome da loja que voce quer excluir:")
     const loja = lojas.find(l => l.nome === nomeLoja);
     if (loja) {
         for (let i = 0; i < lojas.length; i++) {
@@ -47,24 +51,28 @@ function excluirLoja(nomeLoja){
   
 }
 
-function atualizarLoja(nomeLoja,novoNomeLoja){
-    const loja = lojas.find(l => l.nome === nomeLoja);
+function atualizarLoja(){
+var lojaNome= readline.question("Digite o nome da loja que voce deseja atualizar:")
+    const loja = lojas.find(l => l.nome === lojaNome);
     if (loja) {
+        var novoNomeLoja = readline.question("Digite o nome da loja atualizado:")
         for (let i = 0; i < lojas.length; i++) {
-            if (lojas[i].nome === nomeLoja) {
+            if (lojas[i].nome === lojaNome) {
                 lojas[i].nome= novoNomeLoja;
               break;
             }
           }
     } else {
-        console.log(`Loja com nome ${nomeLoja} não encontrada.`);
+        console.log(`Loja com nome ${lojaNome} não encontrada.`);
     }
   
 }
 
-function excluirProduto(nomeLoja, nomeProduto){
+function excluirProduto(){
+var nomeLoja = readline.question("Digite o nome da loja na qual esta o produto que voce quer excluir:")
     const loja = lojas.find(l => l.nome === nomeLoja);
     if (loja) {
+        var nomeProduto = readline.question("Digite o nome do produto que voce quer excluir:")
         const index = loja.produtos.findIndex(p => p.nome === nomeProduto);
         if (index >=0) {
             loja.produtos.splice(index, 1);
@@ -78,11 +86,14 @@ function excluirProduto(nomeLoja, nomeProduto){
   
 }
 
-function atualizarProduto(nomeLoja, nomeProduto, nomeProdutoAtualizado){
+function atualizarProduto(){
+    var nomeLoja = readline.question("Digite o nome da loja o qual voce quer atualizar o produto:")
     const loja = lojas.find(l => l.nome === nomeLoja);
     if (loja) {
+        var nomeProduto = readline.question("Digite o nome do produto:")
         const index = loja.produtos.findIndex(p => p.nome === nomeProduto);
         if (index >=0) {
+            var nomeProdutoAtualizado = readline.question("Digite o nome Atualizado do produto:")
             loja.produtos[index].nome = nomeProdutoAtualizado
         } else {
             console.log(`Produto com nome ${nomeProduto} não encontrado na loja ${nomeLoja}.`);
@@ -92,6 +103,7 @@ function atualizarProduto(nomeLoja, nomeProduto, nomeProdutoAtualizado){
     }
   
 }
+
 
 while(opcao){
   console.log("====Menu=====")
@@ -117,34 +129,23 @@ while(opcao){
      break;
 
      case 2: 
-      var lojaNome= readline.question("Digite o nome da loja que voce deseja atualizar:")
-      var novoNomeLoja = readline.question("Digite o nome da loja atualizado:")
-      atualizarLoja(lojaNome,novoNomeLoja)
+      atualizarLoja()
       break;
 
       case 3:
-       var lojaNome = readline.question("Digite o nome da loja que voce quer excluir:")
-       excluirLoja(lojaNome)
+       excluirLoja()
        break;
      
      case 4:
-        var lojaNome = readline.question("Digite o nome da loja o qual voce quer cadastrar o produto:")
-        var nomeProduto = readline.question("Digite o nome do produto:")
-        var precoProduto = readline.question("Digite o preco do produto:")
-        adicionarProduto(lojaNome,nomeProduto,precoProduto)
+        adicionarProduto()
         break;
     
     case 5:
-        var lojaNome = readline.question("Digite o nome da loja o qual voce quer atualizar o produto:")
-        var nomeProduto = readline.question("Digite o nome do produto:")
-        var nomeProdutoAtualizado = readline.question("Digite o nome Atualizado do produto:")
-         atualizarProduto(lojaNome,nomeProduto,nomeProdutoAtualizado)
+       atualizarProduto()
         break;
     
     case 6:
-        var lojaNome = readline.question("Digite o nome da loja na qual esta o produto que voce quer excluir:")
-        var nomeProduto = readline.question("Digite o nome do produto que voce quer excluir:")
-        excluirProduto(lojaNome,nomeProduto)
+       excluirProduto()
         break;
     
     case 7:
