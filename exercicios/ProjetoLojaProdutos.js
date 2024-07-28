@@ -2,7 +2,7 @@ const readline = require('readline-sync');
 var opcao = true;
 const lojas = [];
 
-function adicionarLoja(nomeLoja) {
+function adicionarLoja(nomeLoja){
     lojas.push({
         nome: nomeLoja,
         produtos: []
@@ -10,6 +10,30 @@ function adicionarLoja(nomeLoja) {
     console.log("Loja cadastrada com sucesso.")
 }
 
+function atualizarLoja(){
+    var lojaNome= readline.question("Digite o nome da loja que voce deseja atualizar:")
+    var index = lojas.findIndex(l => l.nome === lojaNome)
+        if (index>=0) {
+        var lojaNomeAtualizado= readline.question("Digite o nome da loja Atualizado:")
+        lojas[index].nome= lojaNomeAtualizado;
+           
+        } else {
+            console.log(`Loja com nome ${lojaNome} não encontrada.`);
+        }
+}
+
+function excluirLoja(){
+        var nomeLoja = readline.question("Digite o nome da loja que voce quer excluir:")
+        const index = lojas.findIndex(l => l.nome === nomeLoja);
+        if (index>=0) {
+            lojas.splice(index,1)
+          
+        } else {
+            console.log(`Loja com nome ${nomeLoja} não encontrada.`);
+        }
+      
+}
+    
 function adicionarProduto() {
     var nomeLoja= readline.question("Digite o nome da loja o qual voce quer cadastrar o produto:")
     const loja = lojas.find(l => l.nome === nomeLoja);
@@ -24,66 +48,6 @@ function adicionarProduto() {
     } else {
         console.log(`Loja com nome ${nomeLoja} não encontrada.`);
     }
-}
-
-function exibirLojasEProdutos() {
-    lojas.forEach(loja => {
-        console.log(`Loja: ${loja.nome}`);
-        loja.produtos.forEach(produto => {
-            console.log(` Produto: ${produto.nome} - Preco: ${produto.preco}`);
-        });
-    }); 
-}
-
-function excluirLoja(){
-    var nomeLoja = readline.question("Digite o nome da loja que voce quer excluir:")
-    const loja = lojas.find(l => l.nome === nomeLoja);
-    if (loja) {
-        for (let i = 0; i < lojas.length; i++) {
-            if (lojas[i].nome === nomeLoja) {
-              lojas.splice(i, 1);
-              break;
-            }
-          }
-    } else {
-        console.log(`Loja com nome ${nomeLoja} não encontrada.`);
-    }
-  
-}
-
-function atualizarLoja(){
-var lojaNome= readline.question("Digite o nome da loja que voce deseja atualizar:")
-    const loja = lojas.find(l => l.nome === lojaNome);
-    if (loja) {
-        var novoNomeLoja = readline.question("Digite o nome da loja atualizado:")
-        for (let i = 0; i < lojas.length; i++) {
-            if (lojas[i].nome === lojaNome) {
-                lojas[i].nome= novoNomeLoja;
-              break;
-            }
-          }
-    } else {
-        console.log(`Loja com nome ${lojaNome} não encontrada.`);
-    }
-  
-}
-
-function excluirProduto(){
-var nomeLoja = readline.question("Digite o nome da loja na qual esta o produto que voce quer excluir:")
-    const loja = lojas.find(l => l.nome === nomeLoja);
-    if (loja) {
-        var nomeProduto = readline.question("Digite o nome do produto que voce quer excluir:")
-        const index = loja.produtos.findIndex(p => p.nome === nomeProduto);
-        if (index >=0) {
-            loja.produtos.splice(index, 1);
-            console.log(`Produto ${nomeProduto} excluído da loja ${nomeLoja}.`);
-        } else {
-            console.log(`Produto com nome ${nomeProduto} não encontrado na loja ${nomeLoja}.`);
-        }
-    } else {
-        console.log(`Loja com nome ${nomeLoja} não encontrada.`);
-    }
-  
 }
 
 function atualizarProduto(){
@@ -104,6 +68,32 @@ function atualizarProduto(){
   
 }
 
+function excluirProduto(){
+    var nomeLoja = readline.question("Digite o nome da loja na qual esta o produto que voce quer excluir:")
+        const loja = lojas.find(l => l.nome === nomeLoja);
+        if (loja) {
+            var nomeProduto = readline.question("Digite o nome do produto que voce quer excluir:")
+            const index = loja.produtos.findIndex(p => p.nome === nomeProduto);
+            if (index >=0) {
+                loja.produtos.splice(index, 1);
+                console.log(`Produto ${nomeProduto} excluído da loja ${nomeLoja}.`);
+            } else {
+                console.log(`Produto com nome ${nomeProduto} não encontrado na loja ${nomeLoja}.`);
+            }
+        } else {
+            console.log(`Loja com nome ${nomeLoja} não encontrada.`);
+        }
+      
+}
+
+function exibirLojasEProdutos() {
+    lojas.forEach(loja => {
+        console.log(`Loja: ${loja.nome}`);
+        loja.produtos.forEach(produto => {
+            console.log(` Produto: ${produto.nome} - Preco: ${produto.preco}`);
+        });
+    }); 
+}
 
 while(opcao){
   console.log("====Menu=====")
@@ -119,46 +109,36 @@ while(opcao){
   var escolhaUsuario = readline.questionInt("Escolha uma opcao:")
 
   switch(escolhaUsuario){
-
-     case 1:
-     do{
+    case 1:
+      do{
       var loja = readline.question("Digite o nome da loja:")
       adicionarLoja(loja);
       var continuar = readline.question("Deseja cadastrar uma nova loja?")
-     } while(continuar=="sim")
-     break;
-
-     case 2: 
+      } while(continuar=="sim")
+    break;
+    case 2: 
       atualizarLoja()
-      break;
-
-      case 3:
-       excluirLoja()
-       break;
-     
-     case 4:
-        adicionarProduto()
-        break;
-    
+    break;
+    case 3:
+      excluirLoja()
+    break;
+    case 4:
+       adicionarProduto()
+    break;
     case 5:
        atualizarProduto()
-        break;
-    
+    break;
     case 6:
        excluirProduto()
-        break;
-    
+    break;
     case 7:
-        exibirLojasEProdutos()
-        break;
-
+      exibirLojasEProdutos()
+    break;
     case 0:
         opcao = false;
         console.log("Saindo do sistema.....")
-        break;
-
+    break;
     default:
        console.log("Opcao invalida")
-
 }
 }
