@@ -16,7 +16,7 @@ function atualizarLoja(){
         if (index>=0) {
         var lojaNomeAtualizado= readline.question("Digite o nome da loja Atualizado:")
         lojas[index].nome= lojaNomeAtualizado;
-           
+        console.log("Loja atualizada com sucesso") 
         } else {
             console.log(`Loja com nome ${lojaNome} não encontrada.`);
         }
@@ -27,7 +27,7 @@ function excluirLoja(){
         const index = lojas.findIndex(l => l.nome === nomeLoja);
         if (index>=0) {
             lojas.splice(index,1)
-          
+            console.log("Loja excluida com sucesso")
         } else {
             console.log(`Loja com nome ${nomeLoja} não encontrada.`);
         }
@@ -59,6 +59,7 @@ function atualizarProduto(){
         if (index >=0) {
             var nomeProdutoAtualizado = readline.question("Digite o nome Atualizado do produto:")
             loja.produtos[index].nome = nomeProdutoAtualizado
+            console.log("Produto atualizado com sucesso")
         } else {
             console.log(`Produto com nome ${nomeProduto} não encontrado na loja ${nomeLoja}.`);
         }
@@ -83,7 +84,6 @@ function excluirProduto(){
         } else {
             console.log(`Loja com nome ${nomeLoja} não encontrada.`);
         }
-      
 }
 
 function exibirLojasEProdutos() {
