@@ -11,10 +11,10 @@ function adicionarLoja(nomeLoja){
 }
 
 function atualizarLoja(){
-    var lojaNome= readline.question("Digite o nome da loja que voce deseja atualizar:")
+    var lojaNome= readline.question("Digite o nome da loja que voce deseja atualizar:").toLowerCase();
     var index = lojas.findIndex(l => l.nome === lojaNome)
         if (index>=0) {
-        var lojaNomeAtualizado= readline.question("Digite o nome da loja Atualizado:")
+        var lojaNomeAtualizado= readline.question("Digite o nome da loja Atualizado:").toLowerCase();
         lojas[index].nome= lojaNomeAtualizado;
         console.log("Loja atualizada com sucesso") 
         } else {
@@ -23,7 +23,7 @@ function atualizarLoja(){
 }
 
 function excluirLoja(){
-        var nomeLoja = readline.question("Digite o nome da loja que voce quer excluir:")
+        var nomeLoja = readline.question("Digite o nome da loja que voce quer excluir:").toLowerCase();
         const index = lojas.findIndex(l => l.nome === nomeLoja);
         if (index>=0) {
             lojas.splice(index,1)
@@ -35,10 +35,10 @@ function excluirLoja(){
 }
     
 function adicionarProduto() {
-    var nomeLoja= readline.question("Digite o nome da loja o qual voce quer cadastrar o produto:")
+    var nomeLoja= readline.question("Digite o nome da loja o qual voce quer cadastrar o produto:").toLowerCase();
     const loja = lojas.find(l => l.nome === nomeLoja);
     if (loja) {
-        var nomeProduto = readline.question("Digite o nome do produto:")
+        var nomeProduto = readline.question("Digite o nome do produto:").toLowerCase();
         var preco = readline.question("Digite o preco do produto:")
        loja.produtos.push({
         nome: nomeProduto,
@@ -51,13 +51,13 @@ function adicionarProduto() {
 }
 
 function atualizarProduto(){
-    var nomeLoja = readline.question("Digite o nome da loja o qual voce quer atualizar o produto:")
+    var nomeLoja = readline.question("Digite o nome da loja o qual voce quer atualizar o produto:").toLowerCase();
     const loja = lojas.find(l => l.nome === nomeLoja);
     if (loja) {
-        var nomeProduto = readline.question("Digite o nome do produto:")
+        var nomeProduto = readline.question("Digite o nome do produto:").toLowerCase();
         const index = loja.produtos.findIndex(p => p.nome === nomeProduto);
         if (index >=0) {
-            var nomeProdutoAtualizado = readline.question("Digite o nome Atualizado do produto:")
+            var nomeProdutoAtualizado = readline.question("Digite o nome Atualizado do produto:").toLowerCase();
             loja.produtos[index].nome = nomeProdutoAtualizado
             console.log("Produto atualizado com sucesso")
         } else {
@@ -70,10 +70,10 @@ function atualizarProduto(){
 }
 
 function excluirProduto(){
-    var nomeLoja = readline.question("Digite o nome da loja na qual esta o produto que voce quer excluir:")
+    var nomeLoja = readline.question("Digite o nome da loja na qual esta o produto que voce quer excluir:").toLowerCase();
         const loja = lojas.find(l => l.nome === nomeLoja);
         if (loja) {
-            var nomeProduto = readline.question("Digite o nome do produto que voce quer excluir:")
+            var nomeProduto = readline.question("Digite o nome do produto que voce quer excluir:").toLowerCase();
             const index = loja.produtos.findIndex(p => p.nome === nomeProduto);
             if (index >=0) {
                 loja.produtos.splice(index, 1);
@@ -111,7 +111,7 @@ while(opcao){
   switch(escolhaUsuario){
     case 1:
       do{
-      var loja = readline.question("Digite o nome da loja:")
+      var loja = readline.question("Digite o nome da loja:").toLowerCase();
       adicionarLoja(loja);
       var continuar = readline.question("Deseja cadastrar uma nova loja?")
       } while(continuar=="sim")
